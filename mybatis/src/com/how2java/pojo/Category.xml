@@ -3,6 +3,8 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
+ 	<!-- 此处的命名空间表示需要关联的包的位置，如此后就是用com.how2java.pojo
+ 	包之下的类，此处用的是类Category -->
     <mapper namespace="com.how2java.pojo">
         <select id="listCategory" resultType="Category">
             select * from   category_      

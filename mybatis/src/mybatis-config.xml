@@ -2,7 +2,14 @@
 <!DOCTYPE configuration
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- mybatis是一种数据库访问的辅助工具，该工具帮你完成了诸如建立连接
+Statement，jdbc相关的异常处理，我们只需要关注增删改查的工作就可以，
+该工具将技术细节封装在我们看不到的地方 
+默认的配置文件必须叫做：mybatis-config.xml，后续在ssm整合中可以自定义文件名字-->
 <configuration>
+<!-- 自动扫描com.how2java.pojo下的类型，
+使得在后续配置文件Category.xml中使用resultType的时候，
+可以直接使用Category,而不比写全com.how2java.pojo.Category -->
     <typeAliases>
       <package name="com.how2java.pojo"/>
     </typeAliases>
@@ -17,6 +24,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
             </dataSource>
         </environment>
     </environments>
+    
     <mappers>
         <mapper resource="com/how2java/pojo/Category.xml"/>
     </mappers>
