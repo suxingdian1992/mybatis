@@ -2,9 +2,7 @@ package com.how2java;
  
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -12,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.how2java.pojo.Category;
+import com.how2java.pojo.Product;
  
 public class TestMybatis {
  
@@ -22,26 +21,16 @@ public class TestMybatis {
         SqlSession session = sqlSessionFactory.openSession();
  
         
-        Map<String,Object> params = new HashMap<>();
-        params.put("id", 1);
-        params.put("name", "cat");
-        System.out.println("1、模糊查询按照参数名匹配参数");
-        //按照参数名匹配参数的话需要传入键值对
-        List<Category> cs = session.selectList("listCategoryByIdAndName",params);
+        List<Category> cs = session.selectList("listCategory");
         for (Category c : cs) {
-            System.out.println(c.getName());
-            break;
+        	/*注意去看看实体中复写的toString方法，就会知道为啥输出的格式有控制了*/
+        	System.out.println(c);
+            List<Product> ps = c.getProducts();
+            for (Product p : ps) {
+				System.out.println("\t"+p);
+			}
         }
-        
-        System.out.println("2、模糊查询按照顺序匹配参数");
-        cs.clear();
-        //按照顺序匹配参数的话直接填入即可
-        cs = session.selectList("listCategoryByName","cat");
-        for (Category c : cs) {
-            System.out.println(c.getName());
-            break;
-        }
-        
+
         session.commit();
         session.close();
  
