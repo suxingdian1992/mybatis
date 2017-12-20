@@ -18,6 +18,11 @@
 				</association>				
 			</collection>
 		</resultMap>
+		<!-- 删除订单：先删除订单项，再删除订单 -->
+		<delete id="deleteOrder">
+			delete from order_item_ oi where oi.oid=#{id};
+			delete from order_ o where o.id=#{id};
+		</delete>
 				
 		<select id="listOrder" resultMap="orderBean">
 			select o.*,p.*,oi.*, o.id 'oid', p.id 'pid', oi.id 'oiid', p.name 'pname' 

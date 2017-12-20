@@ -29,6 +29,21 @@ public class TestMybatis {
         session.close();
  
     }
+    
+    /**
+     * 下午3:30:38
+     * Args:@param session
+     * ReturnType:void
+     * Author:suxin
+     * TODO
+     * 作业：删除订单，注意数据库连接配置加入了允许同时执行多条sql语句
+     */
+    private static void deleteOrder(SqlSession session) {
+		int id = 1;
+		
+		session.delete("deleteOrder",id);
+		
+	}
 
 	private static void deleteOrderItem(SqlSession session) {
 		Order o1 = session.selectOne("getOrder",1);
