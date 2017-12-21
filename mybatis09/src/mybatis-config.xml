@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+      <package name="com.how2java.pojo"/>
+    </typeAliases>
+       
+    <environments default="development">
+        <environment id="development">
+        	<!-- 事务管理采用干的jdbc模式，也可以采用MANAGED作为关键字，交给web容器管理 -->
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+	            <property name="driver" value="com.mysql.jdbc.Driver"/>
+	            <property name="url" value="jdbc:mysql://localhost:3306/sxdtest?characterEncoding=UTF-8"/>
+	            <property name="username" value="root"/>
+	            <property name="password" value="161210318sxd"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="com/how2java/pojo/Category.xml"/>
+        <mapper class="com.how2java.mapper.CategoryMapper"/>  
+    </mappers>
+</configuration>
